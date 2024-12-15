@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифрование и расшифрование сообщений</title>
+</head>
+<body>
+    <h1>Шифрование и расшифрование сообщений</h1>
+    
+    <h2>Зашифровать сообщение</h2>
+    <form method="post">
+        <label for="message_to_encrypt">Введите сообщение:</label><br>
+        <textarea id="message_to_encrypt" name="message_to_encrypt" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit" name="encrypt">Зашифровать</button>
+    </form>
+    {% if encrypted_message %}
+        <h3>Результат шифрования:</h3>
+        <p>{{ encrypted_message }}</p>
+    {% endif %}
+
+    <h2>Расшифровать сообщение</h2>
+    <form method="post">
+        <label for="message_to_decrypt">Введите зашифрованное сообщение:</label><br>
+        <textarea id="message_to_decrypt" name="message_to_decrypt" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit" name="decrypt">Расшифровать</button>
+    </form>
+    {% if decrypted_message %}
+        <h3>Результат расшифрования:</h3>
+        <p>{{ decrypted_message }}</p>
+    {% endif %}
+</body>
+</html>
