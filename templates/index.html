@@ -17,6 +17,8 @@
     {% if encrypted_message %}
         <h3>Результат шифрования:</h3>
         <p>{{ encrypted_message }}</p>
+        <h3>Результат хэширования:</h3>
+        <p>{{ hashed_message }}</p>
     {% endif %}
 
     <h2>Расшифровать сообщение</h2>
@@ -28,6 +30,8 @@
     {% if decrypted_message %}
         <h3>Результат расшифрования:</h3>
         <p>{{ decrypted_message }}</p>
+        <h3>Результат хэширования:</h3>
+        <p>{{ hashed_message_d }}</p>
     {% endif %}
 </body>
 </html>
