@@ -74,9 +74,23 @@ def decipher(ciphertext, keys=keys):
         decrypted_text += decrypted_block.to_bytes(8, 'big')
     decrypted_text = decrypted_text.replace(b'\x00', b'')
     return decrypted_text.decode(errors="ignore")
-        
+       
+#Hi = EHi-1 (Mi) (+)Mi - выбранная функция хэширования 
+def hash(message):
+    h = 0  # Начальный хэш
+    for i in range(0, len(message), 8):
+        Mi = message[i:i + 8]  # Текущий блок сообщения
+        if len(Mi) < 8:
+            Mi += b'\x00' * (8 - len(Mi))  # Дополняем до 8 байт
+        hi = cipher(Mi, keys)  # Шифруем текущий блок(EHi)
+        h ^= int.from_bytes(hi, 'big')  # Побитовая сумма с текущим хэшом
+    return h.to_bytes(8, 'big')
 
 ciphered_msg = cipher(b'zycie jest bez sensu i wszyscy zginiemy')
 result = decipher(ciphered_msg)
+
+print(hash(ciphered_msg))
+print(hash(b'zycie jest bez sensu i wszyscy zginiemy'))
 print(ciphered_msg.hex())
 print(result)
+print(hash(result.encode('utf-8')))
